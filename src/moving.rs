@@ -1,4 +1,4 @@
-use crate::board;
+use crate::board::{Board};
 
 #[derive(Debug)]
 struct Move {
@@ -7,6 +7,11 @@ struct Move {
     promotion: bool
 }
 
+enum Moves {
+  Illegal,
+  Legal
+}
 
-
-
+pub fn make_move(board:&Board) {
+  todo!()
+}

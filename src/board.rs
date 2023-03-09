@@ -10,13 +10,13 @@ enum Piece {
 }
 
 #[derive(Clone, Copy)]
-struct Square {
+pub struct Square {
     piece: Piece,
     color: Color,
 }
 
 #[derive(Clone, Copy)]
-struct Board {
+pub struct Board {
     squares: [[Square; 8]; 8],
 }
 
@@ -27,7 +27,7 @@ enum Color {
 }
 
 impl Board {
-    fn new() -> Board {
+    pub fn new() -> Board {
         let mut board = Board {
             squares: [[Square {
                 piece: Piece::Empty,
