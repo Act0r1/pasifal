@@ -6,7 +6,7 @@ use crate::board::Board;
 struct Move {
     from: (usize, usize),
     to: (usize, usize),
-    promotion: bool,
+    promotion: Option<String>,
 }
 
 enum StatusGame {
@@ -14,11 +14,22 @@ enum StatusGame {
     End,
 }
 
+enum KingStatus {
+  Check,
+  Mate,
+  NotCheck,
+}
+
+enum Moves {
+    Illegal,
+    Legal,
+}
 struct Game {
     status: StatusGame,
     white_pieces: HashSet<(i32, String)>,
     black_pieces: HashSet<(i32, String)>,
     board: Board,
+    king:KingStatus
 }
 
 impl Game {
@@ -41,15 +52,12 @@ impl Game {
                 (1, "Queen".to_string()),
                 (1, "King".to_string()),
             ]),
-            board: Board::new()
+            board: Board::new(),
+            king:KingStatus::NotCheck,
         }
     }
 }
 
-enum Moves {
-    Illegal,
-    Legal,
-}
 
 pub fn make_move(board: &Board) {
     todo!()
