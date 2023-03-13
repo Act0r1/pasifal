@@ -20,10 +20,6 @@ enum KingStatus {
   NotCheck,
 }
 
-enum Moves {
-    Illegal,
-    Legal,
-}
 struct Game {
     status: StatusGame,
     white_pieces: HashSet<(i32, String)>,
@@ -54,6 +50,12 @@ impl Game {
             ]),
             board: Board::new(),
             king:KingStatus::NotCheck,
+        }
+    }
+    fn is_end(&self) -> bool {
+        match &self.status {
+            StatusGame::End => true,
+            _ => false
         }
     }
 }
