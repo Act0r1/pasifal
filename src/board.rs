@@ -1,3 +1,5 @@
+use std::{error::Error, str::FromStr};
+
 #[derive(Clone, Copy, PartialEq)]
 enum Piece {
     King,
@@ -6,7 +8,6 @@ enum Piece {
     Bishop,
     Knight,
     Pawn,
-    Empty,
 }
 
 #[derive(Clone, Copy)]
@@ -24,6 +25,21 @@ pub struct Board {
 enum Color {
     White,
     Black,
+}
+
+impl FromStr for Piece {
+    type Err = Box<dyn Error>;
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        match s {
+            "K" => Ok(Piece::King),
+            "Q" => Ok(Piece::Queen),
+            "R" => Ok(Piece::Rook),
+            "N" => Ok(Piece::Knight),
+            "B" => Ok(Piece::Bishop),
+            "P" => Ok(Piece::Pawn),
+            _ => panic!("Not matching for any piece"),
+        }
+    }
 }
 
 impl Board {
@@ -116,4 +132,3 @@ impl Board {
         board
     }
 }
-
